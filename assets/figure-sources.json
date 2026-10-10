@@ -1,0 +1,114 @@
+[
+  {
+    "id": "tcrag",
+    "paper": "TC-RAG",
+    "figure": "Figure 1",
+    "page": 6,
+    "source_url": "https://aclanthology.org/2025.acl-long.558/",
+    "asset": "tcrag-framework.png",
+    "dimensions": [
+      1844,
+      792
+    ],
+    "processing": "PDF 原图区域裁切与 4x 渲染；不重绘、不修改图中文字",
+    "source_pdf_filename": "2025.acl-long.558.pdf"
+  },
+  {
+    "id": "stackplanner",
+    "paper": "StackPlanner",
+    "figure": "Figure 2",
+    "page": 4,
+    "source_url": "https://arxiv.org/abs/2601.05890",
+    "asset": "stackplanner-framework.png",
+    "dimensions": [
+      1780,
+      889
+    ],
+    "processing": "PDF 原图区域裁切与 4x 渲染；不重绘、不修改图中文字",
+    "source_pdf_filename": "StackPlanner.pdf"
+  },
+  {
+    "id": "agenticrag",
+    "paper": "AgenticRag-R1",
+    "figure": "Figure 2",
+    "page": 4,
+    "source_url": "https://arxiv.org/abs/2608.29622",
+    "asset": "agenticrag-framework.png",
+    "dimensions": [
+      1847,
+      798
+    ],
+    "processing": "PDF 原图区域裁切与 4x 渲染；不重绘、不修改图中文字",
+    "source_pdf_filename": "AgenticRag-R1.pdf"
+  },
+  {
+    "id": "loongreflect",
+    "paper": "LoongReflect",
+    "figure": "Figure 2",
+    "page": 4,
+    "source_url": "https://arxiv.org/abs/2608.11967",
+    "asset": "loongreflect-framework.png",
+    "dimensions": [
+      1862,
+      1043
+    ],
+    "processing": "PDF 原图区域裁切与 4x 渲染；不重绘、不修改图中文字",
+    "source_pdf_filename": "LoongReflect.pdf"
+  },
+  {
+    "id": "harnessrl",
+    "paper": "Harness-RL",
+    "figure": "Figure 2",
+    "page": 5,
+    "source_url": "https://arxiv.org/abs/2608.29641",
+    "asset": "harnessrl-framework.png",
+    "dimensions": [
+      1676,
+      967
+    ],
+    "processing": "PDF 原图区域裁切与 4x 渲染；不重绘、不修改图中文字",
+    "source_pdf_filename": "Harness-RL.pdf"
+  },
+  {
+    "id": "scaffoldagent",
+    "paper": "ScaffoldAgent",
+    "figure": "Figure 2",
+    "page": 5,
+    "source_url": "https://arxiv.org/abs/2606.20122",
+    "asset": "scaffoldagent-framework.png",
+    "dimensions": [
+      1683,
+      943
+    ],
+    "processing": "PDF 原图区域裁切与 4x 渲染；不重绘、不修改图中文字",
+    "source_pdf_filename": "ScaffoldAgent.pdf"
+  },
+  {
+    "id": "githarness",
+    "paper": "GitHarness",
+    "figure": "Figure 2",
+    "page": 4,
+    "source_url": "https://arxiv.org/abs/2609.36789",
+    "asset": "githarness-framework.png",
+    "dimensions": [
+      1539,
+      910
+    ],
+    "processing": "PDF 原图区域裁切与 4x 渲染；不重绘、不修改图中文字",
+    "source_pdf_filename": "GitHarness.pdf"
+  },
+  {
+    "id": "genmem",
+    "paper": "GenMem",
+    "figure": "Figure 2",
+    "page": 3,
+    "source_url": "https://arxiv.org/abs/2609.34633",
+    "asset": "genmem-framework.png",
+    "dimensions": [
+      1593,
+      762
+    ],
+    "processing": "PDF 原图区域裁切与 4x 渲染；不重绘、不修改图中文字",
+    "source_pdf_filename": "GenMem.pdf"
+  }
+]

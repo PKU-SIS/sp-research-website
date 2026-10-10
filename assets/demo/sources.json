@@ -1,0 +1,17 @@
+{
+  "sp1": {
+    "source": "扶贫正文_剪辑版.mp4",
+    "platform": "SP1"
+  },
+  "sp2": {
+    "source": "SP周三组会-0911-顶层设计与系统集成v3-加case版.pptx",
+    "platform": "SP on DeerFlow2",
+    "slides": {
+      "clarify": 20,
+      "feedback": 21,
+      "recover": 22,
+      "adapt": 23
+    },
+    "mode": "Screenshot playback; no live model execution"
+  }
+}
