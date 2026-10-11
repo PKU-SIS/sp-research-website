@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SP：以 Memory 为核心的神经符号融合智能体系统。Harness 组织执行，模型学习控制，面向复杂长程任务持续演进。">
+  <meta name="description" content="StackPlanner：以 Memory 为核心的神经符号融合智能体系统。Harness 组织执行，模型学习控制，面向复杂长程任务持续演进。">
   <meta name="theme-color" content="#940b18">
-  <title>SP · Memory 驱动的神经符号融合</title>
+  <title>StackPlanner · Memory 驱动的神经符号融合</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./app.js" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=20261011f">
+  <script src="./content.js?v=20261011f" defer></script>
+  <script src="./app.js?v=20261011f" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳至正文</a>
   <aside class="sidebar" aria-label="研究章节导航">
     <a href="#overview" class="school-brand" aria-label="返回研究总览"><img src="./assets/pku-logo.png" alt="北京大学 Peking University" width="265" height="100"></a>
-    <div class="sidebar-title"><strong>SP 智能体研究</strong></div>
+    <div class="sidebar-title"><strong>StackPlanner 智能体研究</strong></div>
     <nav class="chapter-nav">
       <a href="#overview" class="nav-overview active"><span>01</span>研究总览</a>
       <p>符号侧 / Harness</p>
@@ -33,17 +34,53 @@
     </nav>
   </aside>
   <div class="page-shell">
-    <header class="topbar"><a href="#overview">SP <span>研究体系与系列工作</span></a><div><a href="#publications">论文目录 ↘</a></div></header>
+    <header class="topbar"><a href="#overview">StackPlanner <span>研究体系与系列工作</span></a><div><a href="#system-architecture">系统架构</a><a href="#demo">演示</a><a href="#publications">Paper List ↘</a></div></header>
     <main id="main">
       <section class="slide overview-slide" id="overview" aria-labelledby="overview-title">
-        <div class="slide-heading"><h1 id="overview-title">SP <span>— Memory 驱动的神经符号融合</span></h1><span class="slide-number">01 / 11</span></div>
-        <div class="system-intro v6-intro"><p>以 Memory 支撑中枢决策，组织 Agent 与工具协作，在执行中学习并积累经验。</p><div class="v6-system-flow"><span>任务与反馈</span><i>→</i><span><b>Memory</b> 支撑中枢决策</span><i>→</i><span>Agent 与工具协作</span><i>→</i><span>验证与经验回流</span></div></div>
-        <div class="system-tabs" role="tablist" aria-label="SP 系统视角"><button role="tab" id="tab-architecture" aria-controls="view-architecture" aria-selected="true" tabindex="0" data-system-view="architecture">研究路线</button><button role="tab" id="tab-dependencies" aria-controls="view-dependencies" aria-selected="false" tabindex="-1" data-system-view="dependencies">神经符号 Loop</button><button role="tab" id="tab-memory" aria-controls="view-memory" aria-selected="false" tabindex="-1" data-system-view="memory">Memory 体系</button></div>
-        <div class="system-view" id="view-architecture" role="tabpanel" aria-labelledby="tab-architecture" tabindex="0">
-          <div class="v6-heading"><h2>两侧深化，面向复杂任务融合</h2></div>
+  <div class="slide-heading"><h1 id="overview-title">StackPlanner <span>— 以 Memory 为核心的神经符号融合</span></h1><span class="slide-number">01 / 11</span></div>
+  <div class="hero-intro"><p class="hero-lead">让智能体既能组织复杂执行，也能从执行中学习。</p><p>StackPlanner 面向多场景、多工具与多 Agent 参与的复杂任务，将显式的状态组织与模型策略学习结合起来。我们以 Memory 管理任务状态、执行轨迹和反馈经验，研究系统如何调整行动、组织协作，并将已有工作与经验用于后续任务。</p></div>
+  <div class="capability-row"><div><h2>自调节</h2><p>依据状态调整行动，反思并恢复执行。</p></div><div><h2>高组织</h2><p>协调 Agent、工具与证据，适应需求变化。</p></div><div><h2>自进化</h2><p>复用与更新经验，持续改进任务求解。</p></div></div>
+  <div class="repo-grid" data-repositories></div>
+
+  <div class="overview-block" id="neurosymbolic-loop">
+    <div class="section-heading"><span>01</span><h2>整体思想：符号组织执行，神经学习策略</h2></div>
+    <p class="section-prose">Harness 决定状态如何表示、任务怎样分工，以及执行如何继续；模型策略决定何时检索、反思、回退或委派。两侧共享执行中产生的信息，使显式机制与学习能力相互支撑。</p>
+    <p class="mobile-diagram-hint">← 横向滑动查看完整循环 →</p>
+    <div class="dependency-scroll v6-loop"><svg class="v6-loop-graph" viewBox="0 0 1100 720" role="img" aria-labelledby="v6-loop-title v6-loop-desc">
+            <title id="v6-loop-title">以 Memory 为共同载体的神经符号循环</title><desc id="v6-loop-desc">Harness 与策略学习通过中央 Memory 和上下反馈回路协同改进。Harness 包含 TC-RAG、StackPlanner 与 ScaffoldAgent，策略学习包含 AgenticRag-R1、LoongReflect 与 Harness-RL。下方居中并排的 GitHarness 和 GenMem 结合两侧方法，分别支持动态需求协作与经验持续演化。</desc>
+            <defs><marker id="v6-loop-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b60000"/></marker></defs>
+            <path class="v6-loop-edge" d="M230 120V56H870V120"/><text class="v6-loop-label" x="550" y="32">执行轨迹与反馈 → 策略训练</text>
+            <g class="v6-loop-side" transform="translate(35 120)"><rect width="390" height="310"/><text class="v6-loop-title" x="195" y="43">符号侧 · Harness</text><text class="v6-loop-subtitle" x="195" y="76">显式结构与执行机制</text>
+              <a href="#paper-tcrag"><text class="v6-loop-work" x="24" y="130">TC-RAG<tspan x="235">工作记忆</tspan></text></a>
+              <a href="#paper-stackplanner"><text class="v6-loop-work" x="24" y="183">StackPlanner<tspan x="235">分层协作</tspan></text></a>
+              <a href="#paper-scaffoldagent"><text class="v6-loop-work" x="24" y="236">ScaffoldAgent<tspan x="235">证据组织</tspan></text></a>
+            </g>
+            <path class="v6-memory-link" d="M425 275H463M637 275H675"/><g class="v6-loop-memory" transform="translate(550 275)"><circle r="87"/><text x="0" y="-14">Memory</text><text class="v6-loop-memory-detail" x="0" y="20">状态 · 轨迹</text><text class="v6-loop-memory-detail" x="0" y="47">反馈 · 经验</text></g>
+            <g class="v6-loop-side" transform="translate(675 120)"><rect width="390" height="310"/><text class="v6-loop-title" x="195" y="43">神经侧 · 策略学习</text><text class="v6-loop-subtitle" x="195" y="76">模型决策与参数优化</text>
+              <a href="#paper-agenticrag"><text class="v6-loop-work" x="24" y="130">AgenticRag-R1<tspan x="235">记忆动作</tspan></text></a>
+              <a href="#paper-loongreflect"><text class="v6-loop-work" x="24" y="183">LoongReflect<tspan x="235">反思控制</tspan></text></a>
+              <a href="#paper-harnessrl"><text class="v6-loop-work" x="24" y="236">Harness-RL<tspan x="235">策略训练</tspan></text></a>
+            </g>
+            <path class="v6-loop-edge" d="M870 430V490H230V430"/><text class="v6-loop-label" x="550" y="524">策略更新 → 改善执行与记忆控制</text>
+            <g class="v6-loop-fusion">
+              <text class="v6-fusion-heading" x="550" y="578">Harness × RL · 方法融合</text>
+              <a href="#paper-githarness"><g class="v6-node v6-fusion-node" transform="translate(240 600)"><rect width="280" height="95"/><text class="v6-name" x="140" y="38">GitHarness</text><text class="v6-detail" x="140" y="72">动态需求 · 持续协作</text></g></a>
+              <a href="#paper-genmem"><g class="v6-node v6-fusion-node" transform="translate(580 600)"><rect width="280" height="95"/><text class="v6-name" x="140" y="38">GenMem</text><text class="v6-detail" x="140" y="72">经验复用 · 持续演化</text></g></a>
+            </g>
+          </svg></div>
+    <p class="section-prose loop-explanation">这里包含两种更新：离线训练改进模型参数与决策策略，在线经验演化更新外部记忆内容。GitHarness 和 GenMem 已在各自工作中结合 Harness 与策略学习；将全部能力纳入统一系统，是持续推进的整合方向。</p>
+  </div>
+
+  <div class="overview-block" id="system-architecture">
+    <div class="section-heading"><span>02</span><h2>系统架构：StackPlanner 2.0 如何完成任务</h2></div>
+    <p class="section-prose">中枢依据任务状态选择动作，通过 A2A 接口委派子任务；子 Agent 调用工具并返回观察与产物。中枢据此汇总、反思、继续执行或请求用户补充，DeerFlow2 支撑过程保存与恢复。</p>
+    <figure class="architecture-figure"><button class="framework-open" data-framework="system" aria-label="放大 StackPlanner 2.0 完整系统架构"><img src="./assets/sp2-runtime-original.png" alt="团队提供的 Stack Planner 2.0 系统架构：用户交互、中枢与 A2A、通用与报告子 Agent、工具资源及 DeerFlow2 底座" width="1450" height="997" loading="lazy"><span class="zoom-corner">放大原图 ↗</span></button></figure>
+  </div>
+  <div class="overview-block"><div class="system-view" id="research-route">
+          <div class="section-heading"><span>03</span><h2>研究发展：从两侧深化到方法融合</h2></div>
           <p class="mobile-diagram-hint">← 横向滑动查看完整研究路线 →</p>
           <div class="dependency-scroll v6-map"><svg class="v6-graph" viewBox="0 0 1280 500" role="img" aria-labelledby="development-title development-desc">
-            <title id="development-title">SP：以 Memory 为核心的神经符号研究路线</title><desc id="development-desc">符号侧 Harness 由 TC-RAG 的栈式工作记忆发展到 StackPlanner 的分层协作，再到 ScaffoldAgent 的大纲证据组织。神经侧策略学习由 AgenticRag-R1 到 LoongReflect 再到 Harness-RL。TC-RAG 指向 AgenticRag-R1、StackPlanner 指向 LoongReflect 的虚线表示记忆动作与长程反思问题上的研究关联。最右侧的 GitHarness 和 GenMem 已分别融合 Harness 与策略学习。Harness-RL 支撑 Git Agent 和 GenMem 中 SP 执行策略的训练。</desc>
+            <title id="development-title">StackPlanner：以 Memory 为核心的神经符号研究路线</title><desc id="development-desc">符号侧 Harness 由 TC-RAG 的栈式工作记忆发展到 StackPlanner 的分层协作，再到 ScaffoldAgent 的大纲证据组织。神经侧策略学习由 AgenticRag-R1 到 LoongReflect 再到 Harness-RL。TC-RAG 指向 AgenticRag-R1、StackPlanner 指向 LoongReflect 的虚线表示记忆动作与长程反思问题上的研究关联。最右侧的 GitHarness 和 GenMem 已分别融合 Harness 与策略学习。Harness-RL 支撑 Git Agent 和 GenMem 中 StackPlanner 执行策略的训练。</desc>
             <defs><marker id="v6-development-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b60000"/></marker><marker id="v6-research-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#738198"/></marker></defs>
             <rect class="v6-lane-bg" x="145" y="75" width="780" height="160" rx="5"/><rect class="v6-lane-bg" x="145" y="325" width="780" height="160" rx="5"/>
             <text class="v6-side-label" x="20" y="136">符号侧</text><text class="v6-side-name" x="20" y="170">Harness</text>
@@ -69,56 +106,30 @@
             <a href="#paper-genmem"><g class="v6-node v6-fusion-node" transform="translate(1000 350)"><rect width="240" height="110"/><text class="v6-name" x="120" y="43">GenMem</text><text class="v6-detail" x="120" y="78">经验复用 · 持续演化</text></g></a>
           </svg></div>
           <div class="v6-legend"><span><i class="v6-solid-key"></i>方法发展 / 训练支持</span><span><i class="v6-dashed-key"></i>研究问题关联</span></div>
-        </div>
-
-        <div class="system-view" id="view-dependencies" role="tabpanel" aria-labelledby="tab-dependencies" tabindex="0" hidden>
-          <div class="v6-heading"><h2>Memory 连接符号执行与神经学习</h2></div>
-          <p class="mobile-diagram-hint">← 横向滑动查看完整循环 →</p>
-          <div class="dependency-scroll v6-loop"><svg class="v6-loop-graph" viewBox="0 0 1100 700" role="img" aria-labelledby="v6-loop-title v6-loop-desc">
-            <title id="v6-loop-title">以 Memory 为共同载体的神经符号循环</title><desc id="v6-loop-desc">符号侧 Harness 提供工作记忆、分层协作、证据组织、版本管理和经验更新等机制。神经侧通过 AgenticRag-R1、LoongReflect 和 Harness-RL 学习记忆动作、反思控制和复杂执行策略。任务状态、执行轨迹和反馈经验构成共享 Memory。GitHarness 与 GenMem 已分别结合两侧方法。GenMem 在线检索、执行、提炼并更新经验，固定模型参数与 SID 码本。</desc>
-            <defs><marker id="v6-loop-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b60000"/></marker></defs>
-            <path class="v6-loop-edge" d="M230 120V56H870V110"/><text class="v6-loop-label" x="550" y="32">执行轨迹与反馈 → 策略训练</text>
-            <g class="v6-loop-side" transform="translate(35 120)"><rect width="390" height="310"/><text class="v6-loop-title" x="195" y="43">符号侧 · Harness</text>
-              <a href="#paper-tcrag"><text class="v6-loop-work" x="24" y="119">TC-RAG<tspan x="235">工作记忆</tspan></text></a>
-              <a href="#paper-stackplanner"><text class="v6-loop-work" x="24" y="160">StackPlanner<tspan x="235">分层协作</tspan></text></a>
-              <a href="#paper-scaffoldagent"><text class="v6-loop-work" x="24" y="201">ScaffoldAgent<tspan x="235">证据组织</tspan></text></a>
-              <a href="#paper-githarness"><text class="v6-loop-work" x="24" y="242">GitHarness<tspan x="235">版本管理</tspan></text></a>
-              <a href="#paper-genmem"><text class="v6-loop-work" x="24" y="283">GenMem<tspan x="235">经验更新</tspan></text></a>
-            </g>
-            <path class="v6-memory-link" d="M425 275H463M637 275H675"/><g class="v6-loop-memory" transform="translate(550 275)"><circle r="87"/><text x="0" y="-14">Memory</text><text class="v6-loop-memory-detail" x="0" y="20">状态 · 轨迹</text><text class="v6-loop-memory-detail" x="0" y="47">反馈 · 经验</text></g>
-            <g class="v6-loop-side" transform="translate(675 120)"><rect width="390" height="310"/><text class="v6-loop-title" x="195" y="43">神经侧 · 策略学习</text>
-              <a href="#paper-agenticrag"><text class="v6-loop-work" x="24" y="130">AgenticRag-R1<tspan x="235">记忆动作</tspan></text></a>
-              <a href="#paper-loongreflect"><text class="v6-loop-work" x="24" y="183">LoongReflect<tspan x="235">反思控制</tspan></text></a>
-              <a href="#paper-harnessrl"><text class="v6-loop-work" x="24" y="236">Harness-RL<tspan x="235">策略训练</tspan></text></a>
-            </g>
-            <path class="v6-loop-edge" d="M870 430V490H230V440"/><text class="v6-loop-label" x="550" y="524">策略更新 → 改善执行与记忆控制</text>
-            <rect class="v6-online-box" x="35" y="561" width="1030" height="111"/><text class="v6-online-title" x="58" y="598">GenMem · 经验持续演化</text><text class="v6-online-flow" x="58" y="635">检索经验 → SP 执行 → 提炼轨迹 → 更新经验 ↺</text>
-          </svg></div>
-        </div>
-
-        <div class="system-view" id="view-memory" role="tabpanel" aria-labelledby="tab-memory" tabindex="0" hidden>
-          <div class="dependency-heading"><h2>Memory：符号执行与神经学习的共同载体</h2></div>
+        </div><div class="route-reading"><p><strong>Harness 侧</strong>由栈式工作记忆推进到分层协作和大纲证据组织；<strong>策略学习侧</strong>由记忆动作推进到全局反思，再到复杂 Harness 训练。</p><p><a href="#paper-githarness">GitHarness</a> 将需求版本与 Git Agent 策略结合，支持动态需求下的持续协作；<a href="#paper-genmem">GenMem</a> 将经验机制与策略学习结合，使执行经验能够被检索、复用和持续更新。</p></div></div>
+  <details class="memory-details"><summary>Memory 体系：工作记忆与经验记忆 <span aria-hidden="true">＋</span></summary><div class="system-view" id="view-memory">
+          <p class="memory-intro">工作记忆保存当前求解与交互的活动信息；经验记忆保存历史积累的可复用信息。单 / 多智能体描述记忆的组织空间。</p>
           <p class="mobile-memory-hint">← 横向滑动查看 Memory 矩阵 →</p><div class="memory-scroll"><div class="memory-matrix"><div class="matrix-corner">记忆 × 空间</div><div class="matrix-column-title">单智能体</div><div class="matrix-column-title">多智能体</div><div class="matrix-row-title"><strong>工作记忆</strong><span>任务 / 多轮交互</span></div><div class="matrix-cell"><h3>执行状态与恢复点</h3><p>活动上下文、记忆栈、执行分支与反思信息。</p><a href="#paper-tcrag">TC-RAG</a><a href="#paper-agenticrag">AgenticRag-R1</a><a href="#paper-loongreflect">LoongReflect</a></div><div class="matrix-cell"><h3>协作状态与工作版本</h3><p>任务分工、章节证据、用户需求与历史产物。</p><a href="#paper-stackplanner">StackPlanner</a><a href="#paper-scaffoldagent">ScaffoldAgent</a><a href="#paper-githarness">GitHarness</a></div><div class="matrix-row-title experience-title"><strong>经验记忆</strong><span>跨任务 / 持续积累</span></div><div class="matrix-cell experience-cell"><h3>可复用的任务策略</h3><p>从执行轨迹中提炼适用条件、问题求解步骤与失败恢复经验。</p><a href="#paper-genmem">GenMem · 生成式经验寻址</a></div><div class="matrix-cell experience-cell"><h3>系统经验与共享知识</h3><p>包括协作经验、事实与用户信息等；GenMem 聚焦其中的执行经验检索与更新。</p><a href="#paper-genmem">GenMem · 检索—执行—演化</a></div></div></div>
           <div class="memory-management"><strong>轨迹与片段整理</strong><i>→</i><strong>建库与维护</strong><i>→</i><strong>选择与调用</strong><i>→</i><strong>执行中利用</strong><i>↺</i></div>
-        </div>
-        
-      </section>
+        </div></details>
+</section>
       <div id="paper-slides"></div>
       <noscript><section class="slide"><h2>系列研究</h2><p>启用 JavaScript 后可浏览八篇论文的框架图与研究说明。原文链接始终可通过下方论文目录访问。</p></section></noscript>
       <section class="slide demo-slide" id="demo" aria-labelledby="demo-title">
         <div class="slide-heading"><h2 id="demo-title">系统演示</h2><span class="slide-number">10 / 11</span></div>
+        <div class="demo-system-links" data-repositories data-compact="true"></div>
         <div class="demo-version-tabs" role="tablist" aria-label="系统演示版本">
-          <button role="tab" id="demo-tab-sp1" aria-controls="demo-sp1" aria-selected="false" tabindex="-1" data-demo-view="sp1">SP1 · 发言稿生成</button>
-          <button role="tab" id="demo-tab-sp2" aria-controls="demo-sp2" aria-selected="true" tabindex="0" data-demo-view="sp2">SP2 · 自适应协作</button>
+          <button role="tab" id="demo-tab-sp1" aria-controls="demo-sp1" aria-selected="false" tabindex="-1" data-demo-view="sp1">StackPlanner 1.0 · 发言稿生成</button>
+          <button role="tab" id="demo-tab-sp2" aria-controls="demo-sp2" aria-selected="true" tabindex="0" data-demo-view="sp2">StackPlanner 2.0 · 自适应协作</button>
         </div>
         <div id="demo-sp1" role="tabpanel" aria-labelledby="demo-tab-sp1" hidden>
-          <div class="demo-heading"><h3>扶贫主题发言稿生成</h3><span>SP1 · 56 秒实机录屏</span></div>
+          <div class="demo-heading"><h3>扶贫主题发言稿生成</h3><span>StackPlanner 1.0 · 56 秒实机录屏</span></div>
           <div class="demo-video-chapters" role="group" aria-label="跳转视频片段"><button data-video-time="6">需求确认</button><button data-video-time="18">检索协作</button><button data-video-time="27">引用溯源</button><button data-video-time="36">风格改写</button></div>
-          <video class="demo-video" controls playsinline preload="metadata" poster="./assets/demo/sp1-poster.jpg" aria-label="SP1 扶贫主题发言稿生成演示"><source src="./assets/demo/sp1-report.mp4?v=demo1" type="video/mp4">您的浏览器不支持视频播放。<a href="./assets/demo/sp1-report.mp4">打开演示视频</a></video>
+          <video class="demo-video" controls playsinline preload="metadata" poster="./assets/demo/sp1-poster.jpg" aria-label="StackPlanner 1.0 扶贫主题发言稿生成演示"><source src="./assets/demo/sp1-report.mp4?v=demo1" type="video/mp4">您的浏览器不支持视频播放。<a href="./assets/demo/sp1-report.mp4">打开演示视频</a></video>
         </div>
         <div id="demo-sp2" role="tabpanel" aria-labelledby="demo-tab-sp2">
-          <div class="demo-heading"><h3>SP × DeerFlow2</h3><span>真实案例回放</span></div>
-          <div class="demo-case-nav" role="group" aria-label="选择 SP2 案例">
+          <div class="demo-heading"><h3>StackPlanner × DeerFlow2</h3><span>真实案例回放</span></div>
+          <div class="demo-case-nav" role="group" aria-label="选择 StackPlanner 2.0 案例">
             <button data-demo-case="adapt" aria-pressed="true">证据驱动修订</button>
             <button data-demo-case="clarify" aria-pressed="false">检索中主动澄清</button>
             <button data-demo-case="feedback" aria-pressed="false">初稿后征询反馈</button>
@@ -127,20 +138,11 @@
           <div id="demo-case-content" aria-live="polite"></div>
         </div>
       </section>
-      <section class="slide publications-slide" id="publications" aria-labelledby="publications-title"><div class="slide-heading"><h2 id="publications-title">系列成果 <span>— SP 研究论文</span></h2><span class="slide-number">11 / 11</span></div>
-        <ol class="publications">
-          <li><div><span class="pub-venue">ACL 2025</span></div><a href="https://aclanthology.org/2025.acl-long.558/" target="_blank" rel="noopener noreferrer">TC–RAG: Turing–Complete RAG’s Case study on Medical LLM Systems <span>↗</span></a></li>
-          <li><div><span class="pub-venue">AAAI 2027, Submitted</span></div><a href="https://arxiv.org/abs/2601.05890" target="_blank" rel="noopener noreferrer">StackPlanner: A Centralized Hierarchical Multi-Agent System with Task-Experience Memory Management <span>↗</span></a></li>
-          <li><div><span class="pub-venue">EMNLP 2026</span></div><a href="https://arxiv.org/abs/2606.20122" target="_blank" rel="noopener noreferrer">ScaffoldAgent: Utility-Guided Dynamic Outline Optimization for Open-Ended Deep Research <span>↗</span></a></li>
-          <li><div><span class="pub-venue">EMNLP 2026</span></div><a href="https://arxiv.org/abs/2608.29622" target="_blank" rel="noopener noreferrer">AgenticRag-R1: Agentic Reinforcement Learning with Stack Memory for Multi-Step Reasoning, Retrieval and Memorizing <span>↗</span></a></li>
-          <li><div><span class="pub-venue">AAAI 2027, Submitted</span></div><a href="https://arxiv.org/abs/2608.11967" target="_blank" rel="noopener noreferrer">LoongReflect: Boosting Long-Horizon Reflection in Search Agents via Global Perspective Distillation <span>↗</span></a></li>
-          <li><div><span class="pub-venue">PCC 2026, Best Paper</span></div><a href="https://arxiv.org/abs/2608.29641" target="_blank" rel="noopener noreferrer">Harness-RL: Black-Box Reinforcement Learning with Action-Args Decoupling for Central-Agent Multi-Agent Harnesses <span>↗</span></a></li>
-          <li><div><span class="pub-venue">ICLR 2027, Submitted</span></div><a href="https://arxiv.org/abs/2609.36789" target="_blank" rel="noopener noreferrer">GitHarness: Git Init Your Harness Working Memory for Perpetual User Requirements <span>↗</span></a></li>
-          <li><div><span class="pub-venue">ICLR 2027, Submitted</span></div><a href="https://arxiv.org/abs/2609.34633" target="_blank" rel="noopener noreferrer">GenMem: Generative Symbolic Memory for Self-Evolving Harness <span>↗</span></a></li>
-        </ol>
+      <section class="slide publications-slide" id="publications" aria-labelledby="publications-title"><div class="slide-heading"><h2 id="publications-title">系列成果 <span>— StackPlanner 研究论文</span></h2><span class="slide-number">11 / 11</span></div>
+        <div id="publication-list"><!-- publications:start --><ol class="publications"><li id="publication-stackplanner"><div><span class="pub-venue">AAAI 2027 · Submitted</span></div><p class="pub-authors">Ruizhe Zhang, Xinke Jiang, Zhibang Yang, et al.</p><a class="pub-title" href="https://arxiv.org/abs/2601.05890" target="_blank" rel="noopener noreferrer">StackPlanner: A Centralized Hierarchical Multi-Agent System with Task-Experience Memory Management <span aria-hidden="true">↗</span></a></li><li id="publication-loongreflect"><div><span class="pub-venue">AAAI 2027 · Submitted</span></div><p class="pub-authors">Zhixin Zhang, Xinke Jiang, Zhibang Yang, et al.</p><a class="pub-title" href="https://arxiv.org/abs/2608.11967" target="_blank" rel="noopener noreferrer">LoongReflect: Boosting Long-Horizon Reflection in Search Agents via Global Perspective Distillation <span aria-hidden="true">↗</span></a></li><li id="publication-githarness"><div><span class="pub-venue">ICLR 2027 · Submitted</span></div><p class="pub-authors">Zhibang Yang, Xinke Jiang, Yuxuan Liu, et al.</p><a class="pub-title" href="https://arxiv.org/abs/2609.36789" target="_blank" rel="noopener noreferrer">GitHarness: Git Init Your Harness Working Memory for Perpetual User Requirements <span aria-hidden="true">↗</span></a></li><li id="publication-genmem"><div><span class="pub-venue">ICLR 2027 · Submitted</span></div><p class="pub-authors">Xinke Jiang, Tao Feng, Weixuan Xu, et al.</p><a class="pub-title" href="https://arxiv.org/abs/2609.34633" target="_blank" rel="noopener noreferrer">GenMem: Generative Symbolic Memory for Self-Evolving Harness <span aria-hidden="true">↗</span></a></li><li id="publication-opd"><div><span class="pub-venue">ICLR 2027 · Submitted</span></div><p class="pub-authors">Xinke Jiang, Tao Feng, Zhibang Yang, et al.</p><a class="pub-title" href="https://arxiv.org/abs/2609.34849" target="_blank" rel="noopener noreferrer">When Sparse Reward Meets Dense Distillation: Training Dynamics of On-Policy Distillation <span aria-hidden="true">↗</span></a></li><li id="publication-srao"><div><span class="pub-venue">ICLR 2027 · Under Review</span></div><p class="pub-title">SRAO: Coordinating Auxiliary Guidance and Feedback for Efficient Learning</p></li><li id="publication-scaffoldagent"><div><span class="pub-venue">EMNLP 2026</span></div><p class="pub-authors">Zhibang Yang, Xinke Jiang, Yuzhen Xiao, et al.</p><a class="pub-title" href="https://arxiv.org/abs/2606.20122" target="_blank" rel="noopener noreferrer">ScaffoldAgent: Utility-Guided Dynamic Outline Optimization for Open-Ended Deep Research <span aria-hidden="true">↗</span></a></li><li id="publication-agenticrag"><div><span class="pub-venue">EMNLP 2026</span></div><p class="pub-authors">Xinke Jiang, Yue Fang, Zhibang Yang, et al.</p><a class="pub-title" href="https://arxiv.org/abs/2608.29622" target="_blank" rel="noopener noreferrer">AgenticRag-R1: Agentic Reinforcement Learning with Stack Memory for Multi-Step Reasoning, Retrieval and Memorizing <span aria-hidden="true">↗</span></a></li><li id="publication-harnessrl"><div><span class="pub-venue">PCC 2026 · Best Paper</span></div><p class="pub-authors">Xinke Jiang, Zhixin Zhang, Zhibang Yang, et al.</p><a class="pub-title" href="https://arxiv.org/abs/2608.29641" target="_blank" rel="noopener noreferrer">Harness-RL: Black-Box Reinforcement Learning with Action-Args Decoupling for Central-Agent Multi-Agent Harnesses <span aria-hidden="true">↗</span></a></li><li id="publication-dfams"><div><span class="pub-venue">ACL 2026 · Oral</span></div><p class="pub-authors">Zhibang Yang, Xinke Jiang, Rihong Qiu, et al.</p><a class="pub-title" href="https://aclanthology.org/2026.acl-long.1135/" target="_blank" rel="noopener noreferrer">DFAMS: Dynamic-flow guided Federated Alignment based Multi-prototype Search <span aria-hidden="true">↗</span></a><div class="pub-links"><a class="" href="https://github.com/Artessay/DFAMS" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a></div></li><li id="publication-tcrag"><div><span class="pub-venue">ACL 2025</span></div><p class="pub-authors">Xinke Jiang, Yue Fang, Rihong Qiu, et al.</p><a class="pub-title" href="https://aclanthology.org/2025.acl-long.558/" target="_blank" rel="noopener noreferrer">TC–RAG: Turing–Complete RAG’s Case study on Medical LLM Systems <span aria-hidden="true">↗</span></a></li><li id="publication-modelshapley"><div><span class="pub-venue">NeurIPS 2025</span></div><p class="pub-authors">Chu Xu, Xinke Jiang, Rihong Qiu, Jiaran Gao, Junfeng Zhao</p><a class="pub-title" href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/6724eae98f3917968d54c193ac0b45f1-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">MODEL SHAPLEY: Find Your Ideal Parameter Player via One Gradient Backpropagation <span aria-hidden="true">↗</span></a></li></ol><!-- publications:end --></div>
       </section>
     </main>
-    <footer class="site-footer"><strong>SP 智能体研究</strong><a href="#overview">回到顶部 ↑</a></footer>
+    <footer class="site-footer"><strong>StackPlanner 智能体研究</strong><a href="#overview">回到顶部 ↑</a></footer>
   </div>
   <dialog id="framework-dialog" aria-labelledby="viewer-title"><div class="viewer-toolbar"><div><h2 id="viewer-title">Framework</h2><p id="viewer-source"></p></div><div class="viewer-actions"><button id="viewer-zoom">原始尺寸</button><a id="viewer-download" download>下载原图 ↓</a><button id="viewer-close" aria-label="关闭框架图">关闭 ×</button></div></div><div class="viewer-canvas"><img id="viewer-image" alt=""></div></dialog>
 </body>

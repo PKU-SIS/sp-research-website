@@ -1,0 +1,40 @@
+{
+  "verifiedOn": "2026-10-11",
+  "repositories": [
+    {
+      "name": "Stack-Planner",
+      "url": "https://github.com/PKU-SIS/Stack-Planner/tree/master/",
+      "evidence": "User-confirmed system entrance; public README checked."
+    },
+    {
+      "name": "StackPlanner2.0",
+      "url": "https://github.com/PKU-SIS/StackPlanner2.0",
+      "evidence": "User-confirmed system entrance; public README checked."
+    }
+  ],
+  "code": [
+    {
+      "paper": "TC-RAG",
+      "url": "https://github.com/Artessay/TC-RAG",
+      "evidence": "Paper and author repository."
+    },
+    {
+      "paper": "AgenticRag-R1",
+      "url": "https://github.com/jiangxinke/Harness-RL/tree/AgenticRAG-R1-Whitebox",
+      "evidence": "Link in paper; branch checked."
+    },
+    {
+      "paper": "Harness-RL",
+      "url": "https://github.com/jiangxinke/Harness-RL",
+      "evidence": "Link in paper; repository checked."
+    },
+    {
+      "paper": "DFAMS",
+      "url": "https://github.com/Artessay/DFAMS",
+      "evidence": "ACL Anthology author-provided code link."
+    }
+  ],
+  "statusSource": "Existing team-confirmed conference and submission labels retained; no inference of new acceptance.",
+  "architecture": "Team-supplied SP2.0 architecture; simplified diagram preserves original module groups. Runtime details cross-checked with StackPlanner2.0 README.",
+  "privateMaterials": "No private survey PDF or author-console link included. SRAO title and status only; public link and author list unconfirmed."
+}
