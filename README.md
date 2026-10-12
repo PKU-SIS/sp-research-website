@@ -20,14 +20,14 @@ python3 preview.py
 
 ## 页面结构
 
-1. 研究总览：系统目标、两大仓库、神经符号闭环、StackPlanner 2.0 架构原图、研究发展路线与可展开的 Memory 矩阵。
+1. 研究总览：系统目标、三个并列的代码入口、神经符号闭环、StackPlanner 2.0 架构原图、研究发展路线与可展开的 Memory 矩阵。
 2. 八项核心工作：问题、原始 Framework、精简方法、代表性结果、Paper / 已核实 Code；展开查看动机、模块、步骤、创新、发展关系及实验说明。
 3. 系统演示：StackPlanner 1.0 原始视频与片段导航；StackPlanner 2.0 基于真实截图的四类案例回放。
 4. Paper List：全部十二篇合并为同一列表，按会议 / 投稿年份从新到旧排列，同年保持研究发展顺序。OPD、DFAMS、MODEL SHAPLEY、SRAO 仍只列文献信息，无独立详情。
 
 Harness 侧沿 TC-RAG → StackPlanner → ScaffoldAgent 展开，策略学习侧沿 AgenticRag-R1 → LoongReflect → Harness-RL 展开。GitHarness 和 GenMem 在各自任务中结合两侧方法。发展关系不表示所有能力已在同一部署中联合训练。
 
-两个系统入口是 [Stack-Planner](https://github.com/PKU-SIS/Stack-Planner/tree/master/) 和 [StackPlanner2.0](https://github.com/PKU-SIS/StackPlanner2.0)。Harness-RL 训练仓库属于对应论文资源。
+首页并列展示 [Stack-Planner](https://github.com/PKU-SIS/Stack-Planner/tree/master/)、[StackPlanner2.0](https://github.com/PKU-SIS/StackPlanner2.0) 和 [Harness-RL](https://github.com/jiangxinke/Harness-RL) 三个代码入口，分别对应两代系统实现与黑盒强化学习训练框架。系统演示区也提供这三个仓库链接。
 
 ## 如何修改
 

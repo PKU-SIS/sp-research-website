@@ -112,14 +112,15 @@ const researchNotes = {
 
 const systemRepositories = [
   {name:"Stack-Planner",version:"1.0",description:"中枢规划、子任务委派与 MemoryStack，组织多智能体任务执行。",url:"https://github.com/PKU-SIS/Stack-Planner/tree/master/"},
-  {name:"StackPlanner2.0",version:"2.0",description:"在 DeerFlow2 Runtime 上扩展长程协作、执行恢复与产物交付。",url:"https://github.com/PKU-SIS/StackPlanner2.0"}
+  {name:"StackPlanner2.0",version:"2.0",description:"在 DeerFlow2 Runtime 上扩展长程协作、执行恢复与产物交付。",url:"https://github.com/PKU-SIS/StackPlanner2.0"},
+  {name:"Harness-RL",version:"RL",description:"面向复杂 Harness 的黑盒强化学习，支持接口轨迹训练与 Action / Args 解耦优化。",url:"https://github.com/jiangxinke/Harness-RL"}
 ];
 
 const paperResources = {
   tcrag:[{label:"Code",url:"https://github.com/Artessay/TC-RAG",description:"作者公开的 TC-RAG 代码、医学评测数据与运行说明。"}],
   stackplanner:[{label:"Code",url:systemRepositories[0].url,description:"团队维护的 Stack-Planner 系统实现，包含中枢、子 Agent 与记忆管理。"}],
   agenticrag:[{label:"Code",url:"https://github.com/jiangxinke/Harness-RL/tree/AgenticRAG-R1-Whitebox",description:"论文给出的 AgenticRAG-R1-Whitebox 分支。"}],
-  harnessrl:[{label:"Code",url:"https://github.com/jiangxinke/Harness-RL",description:"论文给出的 Harness-RL 训练代码仓库。"}]
+  harnessrl:[{label:"Code",url:systemRepositories[2].url,description:"论文给出的 Harness-RL 训练代码仓库。"}]
 };
 
 const paperDetails = {
