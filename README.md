@@ -4,6 +4,12 @@ StackPlanner：以 Memory 为核心的神经符号融合智能体系统。
 
 静态 HTML / CSS / JavaScript 网站，无框架、CDN、外部字体或构建依赖。展示团队研究体系、系统代码和实际演示，不包含个人简历。
 
+## 在线访问与权限
+
+公开网站：[StackPlanner](https://pku-sis.github.io/sp-research-website/)。GitHub Pages 从 `main` 分支根目录部署，推送更新后自动重新发布，无需保持本地电脑运行。
+
+仓库与网站允许所有人读取；直接写入仍需 PKU-SIS 授予仓库权限，公开访问、fork 或提交 Pull Request 不会获得写权限。2026-10-12 发布时，仓库没有组织外协作者、待接受邀请或部署密钥；已授权写入账号为 PKU-SIS 成员。后续协作者由组织维护者管理。
+
 ## 本地预览
 
 ```sh
@@ -59,7 +65,7 @@ python3 tools/export-preview.py /path/to/preview-directory
 - 未公开综述 PDF 不放入站点，不提供作者控制台链接。SRAO 仅登记确认的题名和状态，作者与访客可用的论文入口待补。
 - 其余论文的 Code、模型和数据资源核实后再添加。
 - 团队负责人邮箱、老师与实验室主页、新演示视频及技术分享资料待确认，不放占位入口。
-- 当前保持私密预览，公开发布由团队另行决定。
+- 2026-10-12 经团队授权公开仓库并启用 GitHub Pages；本地临时预览密码和 GitHub 凭据不包含在仓库中。
 
 ## 2026-10-11 验证
 
